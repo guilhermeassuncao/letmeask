@@ -4,6 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+yarn.lock
+tsconfig.json
+.firebaserc
+database.rules.json
+firebase.json
+/.firebase
+/.github
+
 
 # testing
 /coverage

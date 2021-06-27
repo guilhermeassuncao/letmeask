@@ -13,7 +13,7 @@ type QuestionType = {
     isHighlighted: boolean;
     likeCount: number;
     likeId: string | undefined;
-}
+};
 
 type FirebaseQuestions = Record<
     string,
@@ -25,9 +25,12 @@ type FirebaseQuestions = Record<
         content: string;
         isAnswered: boolean;
         isHighlighted: boolean;
-        likes: Record<string, {
-            authorId: string;
-        }>
+        likes: Record<
+            string,
+            {
+                authorId: string;
+            }
+        >;
     }
 >;
 
@@ -60,9 +63,9 @@ export function useRoom(roomId: string) {
         });
 
         return () => {
-            roomRef.off('value');
-        }
+            roomRef.off("value");
+        };
     }, [roomId, user?.id]);
 
-    return {questions, title}
+    return { questions, title };
 }
