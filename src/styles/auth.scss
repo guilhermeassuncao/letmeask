@@ -140,3 +140,19 @@
         }
     }
 }
+
+@media (max-width: 800px) {
+    #page-auth {
+        flex-direction: column;
+
+        main {
+            padding: 160px 24px;
+            order: 0;
+        }
+
+        aside {
+            padding: 120px 24px;
+            order: 1;
+        }
+    }
+}
