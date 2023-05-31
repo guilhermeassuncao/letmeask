@@ -1,15 +1,15 @@
-import { FormEvent, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Button } from "../components/Button";
-import { Question } from "../components/Question";
-import { RoomCode } from "../components/RoomCode";
-import { useAuth } from "../hooks/useAuth";
-import { useRoom } from "../hooks/useRoom";
-import { database } from "../services/firebase";
+import { FormEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Button } from '../components/Button';
+import { Question } from '../components/Question';
+import { RoomCode } from '../components/RoomCode';
+import { useAuth } from '../hooks/useAuth';
+import { useRoom } from '../hooks/useRoom';
+import { database } from '../services/firebase';
 
-import logoImg from "../assets/images/logo.svg";
+import logoImg from '../assets/images/logo.svg';
 
-import "../styles/room.scss";
+import '../styles/room.scss';
 
 type RoomParams = {
     id: string;
@@ -19,19 +19,19 @@ export function Room() {
     const { user } = useAuth();
     const params = useParams<RoomParams>();
     const roomId = params.id;
-    const [newQuestion, setNewQuestion] = useState("");
+    const [newQuestion, setNewQuestion] = useState('');
 
     const { title, questions } = useRoom(roomId);
 
     async function handleSendQuestion(event: FormEvent) {
         event.preventDefault();
 
-        if (newQuestion.trim() === "") {
+        if (newQuestion.trim() === '') {
             return;
         }
 
         if (!user) {
-            throw new Error("You must be logged in.");
+            throw new Error('You must be logged in.');
         }
 
         const question = {
@@ -46,7 +46,7 @@ export function Room() {
 
         await database.ref(`rooms/${roomId}/questions`).push(question);
 
-        setNewQuestion("");
+        setNewQuestion('');
     }
 
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
@@ -93,7 +93,7 @@ export function Room() {
                         )}
 
                         <Button type="submit" disabled={!user}>
-                            {" "}
+                            {' '}
                             Enviar pergunta
                         </Button>
                     </div>
@@ -110,7 +110,7 @@ export function Room() {
                             >
                                 {!question.isAnswered && (
                                     <button
-                                        className={`like-button ${question.likeId ? "liked" : ""}`}
+                                        className={`like-button ${question.likeId ? 'liked' : ''}`}
                                         type="button"
                                         onClick={() => handleLikeQuestion(question.id, question.likeId)}
                                         aria-label="Marcar como gostei"
